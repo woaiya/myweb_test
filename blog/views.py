@@ -32,6 +32,7 @@ def edit(request, body_id):
     return render(request, 'blog/edit.html', {'posts': posts})
 
 
+# 删除方法
 def delete(request, body_id):
     BlogPost.objects.filter(id=body_id).delete()
     return redirect(reverse('blog:index'))

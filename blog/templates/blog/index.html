@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+<h3>我的博客列表：</h3>
+{% for post in posts %}
+    <a href="{% url 'blog:body_page' post.id %}">{{ post.title }}</a><br>
+{% endfor %}
+    <a href="{% url 'blog:add' %}">新增博客</a>
+</body>
+</html>

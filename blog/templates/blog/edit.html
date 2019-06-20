@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑博客</title>
+</head>
+<body>
+<form action="" method="post">
+    {% csrf_token %}
+    <label>
+        <input type="text" value="{{ posts.title }}" name="title">
+    </label><br>
+    <label>
+        <input type="text" value="{{ posts.body }}" name="body">
+    </label><br>
+    <input type="submit" value="保存">
+    <a href="{% url 'blog:index' %}">返回首页</a>
+</form>
+</body>
+</html>

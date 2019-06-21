@@ -24,7 +24,7 @@ def index(request):
             else:
                 return HttpResponse('用户不存在')
         else:
-            print(userFrom.errors)
+            # print(userFrom.errors)
 
             return render(request, 'login/index.html', {'error': userFrom.errors})
     return render(request, 'login/index.html')

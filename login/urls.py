@@ -8,4 +8,5 @@ from login import views
 
 app_name = 'login'
 urlpatterns = [
+    path(r'index/', views.index, name='index'),
 ]

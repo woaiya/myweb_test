@@ -3,18 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>登录页面</title>
-    <script type="text/javascript" src="../../static/login/js/login.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<script>
+    $(document).ready(function(){
+      $("#btnLogin").click(function(){
+        var username = $("#id_username").val();
+        var password = $("#id_password").val();
+
+        $.post("{% url 'login:login_ajax' %}",{'username':username,'password':password}, function(res){
+            if (res.code === 200){
+                location.href = "{% url 'blog:index' %}"
+            }else {
+                $('#result').show().text(res.msg)
+            }
+        })
+
+      });
+    });
+</script>
 </head>
 <body>
-    <form action="" method="post" name="login" onsubmit="return loginForm()">
-        {% csrf_token %}
-        用户名: <label>
-                <input type="text" name="username">
-                </label><p id="usernameError"></p><br>
-        密  码: <label>
-                <input type="password" name="password">
-                </label><p id="passwordError"></p><br>
-        <input type="submit" value="提交">
-    </form>
+<div>
+    <p>
+        <label for="id_username">username:</label>
+        <input type="text" id="id_username" name="username">
+    </p>
+    <p>
+        <label for="id_password">password</label>
+        <input type="password" id="id_password" name="password">
+    </p>
+    <p>
+        result:<span id="result"></span>
+    </p>
+    <button type="button" id="btnLogin">登录</button>
+
+</div>
 </body>
 </html>

@@ -10,4 +10,5 @@ app_name = 'login'
 urlpatterns = [
     path(r'index/', views.index, name='index'),
     path(r'login_ajax', views.ajax_login, name='login_ajax'),
+    path(r'register', views.register, name='register'),
 ]

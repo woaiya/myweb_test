@@ -18,6 +18,8 @@ def ajax_login(request):
     user = UserPost.objects.filter(username=username, password=password)
     if user:
         msg = {"code": 200, "msg": ""}
+        request.session['is_login'] = True
+        request.session['user_id'] = username
     else:
         msg = {"code": 400, "msg": "用户名密码错误"}
     return JsonResponse(msg)
@@ -30,3 +32,10 @@ def register(request):
         UserPost.objects.create(username=username, password=password)
         return redirect(reverse('blog:index'))
     return render(request, 'login/registration.html')
+
+
+def logout(request):
+    if not request.session.get('is_login', None):
+        return redirect(reverse('login:index'))
+    request.session.flush()
+    return redirect(reverse('login:index'))

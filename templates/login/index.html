@@ -7,10 +7,10 @@
 <script>
     $(document).ready(function(){
       $("#btnLogin").click(function(){
-        var username = $("#id_username").val();
-        var password = $("#id_password").val();
+          const username = $("#id_username").val();
+          const password = $("#id_password").val();
 
-        $.post("{% url 'login:login_ajax' %}",{'username':username,'password':password}, function(res){
+          $.post("{% url 'login:login_ajax' %}",{'username':username,'password':password}, function(res){
             if (res.code === 200){
                 location.href = "{% url 'blog:index' %}"
             }else {

@@ -6,9 +6,14 @@
 </head>
 <body>
 <h3>我的博客列表：</h3>
-{% for post in posts %}
-    <a href="{% url 'blog:body_page' post.id %}">{{ post.title }}</a><br>
-{% endfor %}
-    <a href="{% url 'blog:add' %}">新增博客</a>
+{% if request.session.is_login %}
+    {% for post in posts %}
+        <a href="{% url 'blog:body_page' post.id %}">{{ post.title }}</a><br>
+    {% endfor %}
+    <a href="{% url 'blog:add' %}">新增博客</a><br>
+    <a href="{% url 'login:logout' %}">退出登录</a>
+{% else %}
+    <h1>您尚未登录，请去登录</h1>
+{% endif %}
 </body>
 </html>

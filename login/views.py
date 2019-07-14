@@ -23,7 +23,6 @@ def ajax_login(request):
     return JsonResponse(msg)
 
 
-# @csrf_exempt
 def register(request):
     if request.method == "POST":
         username = request.POST['username']

@@ -12,6 +12,8 @@ def index(request):
 
 def body(request, body_id):
     posts = BlogPost.objects.get(id=body_id)
+    # 浏览量增加
+    BlogPost.objects.filter(id=body_id).update(views=posts.views+1)
     return render(request, 'blog/body.html', {'posts': posts})
 
 

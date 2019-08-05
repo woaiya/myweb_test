@@ -38,8 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django.forms',
+
     'blog',
     'login',
+
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -123,4 +128,25 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # css,js,image的调用路径
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static').replace('\\', '/'),
+]
+
+# 静态文件上传至七牛云
+STATIC_ROOT = 'static_root/'
+
+
+# ckeditor
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+    },
+}
+
+CKEDITOR_UPLOAD_PATH = 'ckeditor/'
+CKEDITOR_JQUERY_URL = '//cdn.bootcss.com/jquery/1.11.3/jquery.min.js'
+CKEDITOR_IMAGE_BACKEND = 'pillow'
+
+
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'

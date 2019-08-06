@@ -136,6 +136,8 @@ STATICFILES_DIRS = [
 # 静态文件上传至七牛云
 STATIC_ROOT = 'static_root/'
 
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # ckeditor
 CKEDITOR_CONFIGS = {

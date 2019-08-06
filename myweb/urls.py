@@ -17,6 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 
+from django.conf.urls.static import static
+from django.conf import settings
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 
@@ -25,3 +28,5 @@ urlpatterns = [
 
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
+# ckeditor 上传图片文件路径
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

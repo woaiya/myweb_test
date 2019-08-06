@@ -4,6 +4,7 @@ from django.db import models
 
 from django.utils.html import format_html
 from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class CategoryModels(models.Model):
@@ -46,7 +47,7 @@ class BlogPost(models.Model):
     username = models.CharField(max_length=20, default='test', verbose_name='用户名')
     title = models.CharField(max_length=150, verbose_name='标题')
     # body = models.TextField()
-    body = RichTextField(config_name='default', verbose_name='内容')
+    body = RichTextUploadingField(config_name='default', verbose_name='内容')
     state = models.IntegerField(default=1, verbose_name='状态')
     # 关联表category
     category = models.ForeignKey(CategoryModels, default=1, on_delete=models.DO_NOTHING, verbose_name='分类')

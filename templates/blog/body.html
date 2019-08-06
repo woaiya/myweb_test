@@ -6,7 +6,7 @@
 </head>
 <body>
     <p>{{ posts.title }}</p><br>
-    <p>{{ posts.body }}</p><br>
+    <p>{{ posts.body|safe }}</p><br>
     <p>{{ posts.timestamp }}</p><br>
     <a href="{% url 'blog:index' %}">返回首页</a>
     <a href="{% url 'blog:edit' posts.id %}">编辑博客</a>

@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 from django.utils.html import format_html
-from ckeditor.fields import RichTextField
+# from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 
 
@@ -46,10 +46,10 @@ class BlogPost(models.Model):
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=20, default='test', verbose_name='用户名')
     title = models.CharField(max_length=150, verbose_name='标题')
-    # body = models.TextField()
+    """body = models.TextField()"""
     body = RichTextUploadingField(config_name='default', verbose_name='内容')
     state = models.IntegerField(default=1, verbose_name='状态')
-    # 关联表category
+    """关联表category"""
     category = models.ForeignKey(CategoryModels, default=1, on_delete=models.DO_NOTHING, verbose_name='分类')
     views = models.PositiveIntegerField(default=0, verbose_name='阅读量')
     timestamp = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')

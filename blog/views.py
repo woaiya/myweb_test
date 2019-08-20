@@ -6,7 +6,7 @@ from blog.models import BlogPost
 
 
 def index(request):
-    posts = BlogPost.objects.all()
+    posts = BlogPost.objects.filter(state=1)
     return render(request, 'blog/index.html', {'posts': posts})
 
 
@@ -33,6 +33,8 @@ def edit(request, body_id):
 
 # 删除方法
 def delete(request, body_id):
-    BlogPost.objects.filter(id=body_id).delete()
+    # 假删除
+    BlogPost.objects.filter(id=body_id).update(state=0)
+    # 真删除
+    # BlogPost.objects.filter(id=body_id).delete()
     return redirect(reverse('blog:index'))
-

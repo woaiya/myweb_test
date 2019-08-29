@@ -40,12 +40,12 @@ def delete(request, body_id):
     return redirect(reverse('blog:index'))
 
 
-def test_index(request):
+def blog_index(request):
     posts = BlogPost.objects.filter(state=1)
     return render(request, 'blog/lw-index.html', {'posts': posts})
 
 
-def test_body(request, body_id):
+def blog_body(request, body_id):
     posts = BlogPost.objects.get(id=body_id)
     # 浏览量增加
     BlogPost.objects.filter(id=body_id).update(views=posts.views+1)

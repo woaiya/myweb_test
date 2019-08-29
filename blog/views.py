@@ -38,3 +38,16 @@ def delete(request, body_id):
     # 真删除
     # BlogPost.objects.filter(id=body_id).delete()
     return redirect(reverse('blog:index'))
+
+
+def test_index(request):
+    posts = BlogPost.objects.filter(state=1)
+    return render(request, 'blog/lw-index.html', {'posts': posts})
+
+
+def test_body(request, body_id):
+    posts = BlogPost.objects.get(id=body_id)
+    # 浏览量增加
+    BlogPost.objects.filter(id=body_id).update(views=posts.views+1)
+    return render(request, 'blog/lw-article.html', {'posts': posts})
+
